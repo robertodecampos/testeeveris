@@ -1,0 +1,28 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:hasRecordId">
+    
+    <!-- Variables -->
+    <aura:attribute name="showSpinner" type="Boolean" default="true" />
+
+    <aura:if isTrue="{! v.showSpinner }">
+        <lightning:spinner alternativeText="Loading" size="large" />
+    </aura:if>
+
+    
+    <lightning:recordEditForm
+        recordId="{! v.recordId }"
+        objectApiName="Account"
+        onload="{! c.handleLoad }"
+        onsubmit="{! c.handleSubmit }"
+        onsuccess="{! c.handleSuccess }"
+        onerror="{! c.handleError }"
+    >
+        <lightning:messages />
+        <lightning:inputField fieldName="Name" />
+        <lightning:inputField fieldName="AccountNumber" />
+        <lightning:inputField fieldName="Type" />
+
+        <div class="slds-text-align--right">
+            <lightning:button class="slds-m-top_small" variant="brand" type="submit" name="update" label="Salvar" />
+        </div>
+    </lightning:recordEditForm>
+</aura:component>
